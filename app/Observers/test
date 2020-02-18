@@ -1,0 +1,9 @@
+ dd($languages);
+        $language = $languages('title');
+        Schema::create('localizations_'.$language, function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedInteger('key_id')->unique();
+            $table->foreign('key_id')->references('id')->on('languages');
+            $table->text('localization');
+            $table->timestamps();
+        });
