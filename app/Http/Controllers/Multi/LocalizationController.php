@@ -17,8 +17,12 @@ class LocalizationController extends Controller
      */
     public function index($locale)
     {
-        $translates = DB::select( 'Select s.key, u.localization from localizations as s
-        left join localizations_' . $locale . ' as u on u.key_id = s.key');
+        Localization::setLocale($locale);
+        $translates = Localization::query()->with('translate')->get();
+
+//        $translates = DB::select( 'Select s.key, u.localization from localizations as s
+//        left join localizations_' . $locale . ' as u on u.key_id = s.key');
+//        dd($translates);
         return view('multi\localization', compact('translates', 'locale'));
     }
 

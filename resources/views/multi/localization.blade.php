@@ -31,7 +31,7 @@
                                             @csrf
                                             <input hidden type="text" class="form-control" name="lang" value="{{ $locale }}">
                                             <input hidden type="text" class="form-control" name="key" value="{{ $translate->key }}">
-                                            <input type="text" class="form-control" name="localization" value="{{ $translate->localization }}">
+                                            <input type="text" class="form-control" name="localization" value="{{ optional($translate->translate)->localization }}">
                                             <button type="submit" class="btn btn-info">Save</button>
                                         </form>
                                     </td>

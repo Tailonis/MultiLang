@@ -65,15 +65,15 @@ class LanguagesController extends Controller
     }
 
     public function createTable($language)
-    {
-        Schema::create('localizations_' . $language, function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('key_id')->unique();
-            $table->foreign('key_id')->references('key')->on('localizations');
-            $table->text('localization');
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('localizations_' . $language, function (Blueprint $table) {
+        $table->bigIncrements('id');
+        $table->string('key_id')->unique();
+        $table->foreign('key_id')->references('key')->on('localizations');
+        $table->text('localization');
+        $table->timestamps();
+    });
+}
 
 
     /**

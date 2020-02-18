@@ -6,13 +6,42 @@ use Illuminate\Database\Eloquent\Model;
 
 class Localization extends Model
 {
-    public function localizations()
+    /** @var string  */
+    private static $locale = 'en';
+
+    /**
+     * @var string
+     */
+    private $tableTemplate = 'localizations_';
+
+    /**
+     * @return string
+     */
+//    public function getTable()
+//    {
+//        return $this->tableTemplate . self::$locale;
+//    }
+
+    /**
+     * @param string $locale
+     */
+    public static function setLocale(string $locale)
     {
-        return $this->hasOne('App\Models\Localization_others');
+        self::$locale = $locale;
     }
 
-    public static function setLocale($locale)
+    /**
+     * @return string
+     */
+    public static function getLocale()
     {
-        return $locale;
+        return self::$locale;
     }
+
+    public function translate()
+    {
+        return $this->hasOne(LocalizationOthers::class, 'key_id', 'key');
+    }
+
+
 }
